@@ -70,7 +70,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      transition: opacity 0.8s ease;
+      transition: opacity 1s ease;
     }
 
     .flip-card-front {
@@ -126,6 +126,45 @@
       font-size: 15px;
       line-height: 1.5;
       max-width: 90%;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #FF007A, #FF5E3A);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    .fact-box h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .fact-display {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .fact-description {
+      font-size: 1rem;
+      margin-top: 5px;
+    }
+
+    .fact-button {
+      margin-top: 25px;
+      background: white;
+      color: #FF007A;
+      font-weight: bold;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .fact-button:hover {
+      background: #ffe5ec;
     }
   </style>
 </head>
@@ -219,5 +258,31 @@
       </div>
     </div>
   </div>
+  <div class="fact-box">
+    <h2>Discover some stats about circular leasing</h2>
+    <div id="fact">
+      <div class="fact-display" id="fact-number">99%</div>
+      <div class="fact-description" id="fact-description">of LIZY's fleet is circular</div>
+    </div>
+    <button class="fact-button" onclick="showRandomFact()">Show another stat</button>
+  </div>
+
+  <script>
+    const facts = [
+      { number: "8.6 tonnes", description: "of CO₂ saved" },
+      { number: "9Kg", description: "of lithium saved" },
+      { number: "25,000 liters", description: "of water saved" },
+      { number: "90%", description: "of LIZY's fleet is electric or hybrid" },
+      { number: "99%", description: "of LIZY's fleet is circular" }
+    ];
+
+    function showRandomFact() {
+      const random = facts[Math.floor(Math.random() * facts.length)];
+      document.getElementById('fact-number').textContent = random.number;
+      document.getElementById('fact-description').textContent = random.description;
+    }
+  </script>
+</body>
+</html>
 </body>
 </html>
