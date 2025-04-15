@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Index - LIZY Sandbox</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       background: #fff;
       color: #333;
     }
@@ -26,13 +26,21 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .flip-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    .comparison-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 60px;
+      justify-content: center;
       max-width: 1200px;
       margin: 40px auto;
-      padding: 20px;
+      padding: 0 20px;
+    }
+
+    .flip-column {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      flex: 1 1 300px;
     }
 
     .flip-card {
@@ -43,7 +51,7 @@
     .flip-card-inner {
       position: relative;
       width: 100%;
-      height: 300px;
+      height: 240px;
       transition: transform 0.6s;
       transform-style: preserve-3d;
     }
@@ -64,33 +72,35 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      color: #333;
+      align-items: center;
+      text-align: center;
     }
 
     .flip-card-front {
       background: #fff;
+      color: #333;
     }
 
     .flip-card-back {
       transform: rotateY(180deg);
+      color: white;
+    }
+
+    .classique .flip-card-back {
+      background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+      color: #333;
+    }
+
+    .circulaire .flip-card-back {
+      background: linear-gradient(135deg, #FF007A, #FF5E3A);
     }
 
     .classique .flip-card-front {
       border-left: 6px solid #ccc;
     }
 
-    .classique .flip-card-back {
-      background: #f5f5f5;
-      border-left: 6px solid #ccc;
-    }
-
     .circulaire .flip-card-front {
-      border-left: 6px solid #f67280;
-    }
-
-    .circulaire .flip-card-back {
-      background: linear-gradient(135deg, #f67280, #f8b195);
-      color: white;
+      border-left: 6px solid #FF007A;
     }
 
     .flip-card-front h3 {
@@ -98,103 +108,106 @@
     }
 
     .flip-card-front img {
-      max-width: 60px;
+      max-width: 50px;
       margin-bottom: 10px;
     }
 
     .flip-card-back p {
       font-size: 15px;
-      line-height: 1.4;
+      line-height: 1.5;
+      max-width: 90%;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Comparatif : Leasing Classique vs Leasing Circulaire</h1>
+    <h1>Classic Leasing vs Circular Leasing</h1>
   </header>
 
-  <div class="flip-grid">
-
-    <!-- Leasing Classique -->
-    <div class="flip-card classique">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="https://img.icons8.com/ios/50/000000/car.png" alt="Classique 1">
-          <h3>Utilisation unique</h3>
-          <p>Véhicule souvent utilisé par un seul conducteur avant revente.</p>
+  <div class="comparison-section">
+    <!-- Classic Leasing Column -->
+    <div class="flip-column">
+      <div class="flip-card classique">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://img.icons8.com/ios/50/000000/car.png" alt="Classic 1">
+            <h3>Single usage</h3>
+            <p>Often used by one driver before resale.</p>
+          </div>
+          <div class="flip-card-back">
+            <p>In traditional leasing, vehicles are typically used by one person and quickly resold. This limits the potential lifespan of the car and leads to increased production and waste.</p>
+          </div>
         </div>
-        <div class="flip-card-back">
-          <p>Cycle de vie court, impact écologique plus élevé.</p>
+      </div>
+
+      <div class="flip-card classique">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://img.icons8.com/ios/50/000000/gear.png" alt="Classic 2">
+            <h3>Minimal maintenance</h3>
+            <p>Only the basics are covered.</p>
+          </div>
+          <div class="flip-card-back">
+            <p>Minimal servicing increases the risk of mechanical failures and accelerates depreciation, resulting in a shorter usable life and greater environmental strain.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card classique">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://img.icons8.com/ios/50/000000/close-window.png" alt="Classic 3">
+            <h3>Poor end-of-life handling</h3>
+            <p>Sold quickly without reconditioning.</p>
+          </div>
+          <div class="flip-card-back">
+            <p>Cars are rarely refurbished or properly recycled. This approach promotes a linear economy, where products are discarded instead of reused or repurposed.</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="flip-card classique">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="https://img.icons8.com/ios/50/000000/gear.png" alt="Classique 2">
-          <h3>Entretien minimum</h3>
-          <p>Entretien limité à l’essentiel.</p>
+    <!-- Circular Leasing Column -->
+    <div class="flip-column">
+      <div class="flip-card circulaire">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/refresh.png" alt="Circular 1">
+            <h3>Multi-user lifecycle</h3>
+            <p>Vehicle is reused across several leases.</p>
+          </div>
+          <div class="flip-card-back">
+            <p>Instead of a single-use cycle, circular leasing allows multiple drivers to benefit from the same vehicle. This maximizes resource use and reduces overall demand.</p>
+          </div>
         </div>
-        <div class="flip-card-back">
-          <p>Usure rapide, durée de vie raccourcie.</p>
+      </div>
+
+      <div class="flip-card circulaire">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/maintenance.png" alt="Circular 2">
+            <h3>Proactive maintenance</h3>
+            <p>Regular servicing to ensure longevity.</p>
+          </div>
+          <div class="flip-card-back">
+            <p>With frequent and thorough maintenance, vehicles stay in top condition for longer, delaying the need for replacement and minimizing environmental impact.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card circulaire">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/checked--v1.png" alt="Circular 3">
+            <h3>Systematic reconditioning</h3>
+            <p>Refurbished after each lease cycle.</p>
+          </div>
+          <div class="flip-card-back">
+            <p>Every car goes through a full check-up and refresh before being leased again. This practice ensures safety, quality, and sustainable usage over time.</p>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="flip-card classique">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="https://img.icons8.com/ios/50/000000/close-window.png" alt="Classique 3">
-          <h3>Fin de vie mal gérée</h3>
-          <p>Revente sans reconditionnement.</p>
-        </div>
-        <div class="flip-card-back">
-          <p>Consommation linéaire, peu durable.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Leasing Circulaire -->
-    <div class="flip-card circulaire">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="https://img.icons8.com/ios-filled/50/ffffff/refresh.png" alt="Circulaire 1">
-          <h3>Multi-usages optimisés</h3>
-          <p>Remis en circulation plusieurs fois.</p>
-        </div>
-        <div class="flip-card-back">
-          <p>Moins de production, empreinte réduite.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="flip-card circulaire">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="https://img.icons8.com/ios-filled/50/ffffff/maintenance.png" alt="Circulaire 2">
-          <h3>Maintenance proactive</h3>
-          <p>Révisions régulières prolongées.</p>
-        </div>
-        <div class="flip-card-back">
-          <p>Meilleure longévité du véhicule.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="flip-card circulaire">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="https://img.icons8.com/ios-filled/50/ffffff/recycle.png" alt="Circulaire 3">
-          <h3>Reconditionnement systématique</h3>
-          <p>À chaque fin de leasing.</p>
-        </div>
-        <div class="flip-card-back">
-          <p>Durée de vie allongée, moins de gaspillage.</p>
-        </div>
-      </div>
-    </div>
-
   </div>
 </body>
 </html>
