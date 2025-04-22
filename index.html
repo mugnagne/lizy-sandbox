@@ -181,7 +181,7 @@
             background-color: #f5f5f5;
         }
 
-        .widget {
+       .widget {
             width: 80%;
             max-width: 600px;
             padding: 20px;
@@ -190,22 +190,16 @@
             border: 5px solid transparent;
             background-image: linear-gradient(135deg, #ff5b77, #ff9900);
             display: flex;
-            flex-direction: row;
             justify-content: space-around;
             align-items: center;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .trophy {
             text-align: center;
             cursor: pointer;
-            transition: transform 0.3s ease, flex-grow 0.3s ease;
-        }
-
-        .trophy.activated {
-            transform: scale(1.5);
-            flex-grow: 2;
-            margin-left: 20px;
+            transition: transform 0.3s ease;
         }
 
         .trophy span {
@@ -213,13 +207,22 @@
             margin-bottom: 10px;
         }
 
-        .description {
-            display: none;
-            margin-top: 20px;
+        .trophy.activated {
+            transform: scale(1.5);
         }
 
-        .description.active {
-            display: block;
+        .description {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .description h2 {
@@ -232,6 +235,21 @@
             line-height: 1.5;
             color: #666;
         }
+
+        .description .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .trophy-container {
+            display: flex;
+            gap: 20px;
+        }
+
+    </style>
   </style>
 </head>
 <body>
@@ -333,32 +351,38 @@
     <button class="fact-button" onclick="showRandomFact()">Show another stat</button>
   </div>
   <div class="widget">
-        <div class="trophy" id="sustainability" onclick="showDescription('sustainability')">
-            <span>🏆</span>
-            <div>Sustainability Award</div>
+        <div class="trophy-container">
+            <div class="trophy" id="sustainability" onclick="showDescription('sustainability')">
+                <span>🏆</span>
+                <div>Sustainability Award</div>
+            </div>
+            <div class="trophy" id="circularity" onclick="showDescription('circularity')">
+                <span>🌍</span>
+                <div>Circularity Award</div>
+            </div>
+            <div class="trophy" id="bestcars" onclick="showDescription('bestcars')">
+                <span>🚗</span>
+                <div>Best Cars Award</div>
+            </div>
         </div>
-        <div class="trophy" id="circularity" onclick="showDescription('circularity')">
-            <span>🌍</span>
-            <div>Circularity Award</div>
-        </div>
-        <div class="trophy" id="bestcars" onclick="showDescription('bestcars')">
-            <span>🚗</span>
-            <div>Best Cars Award</div>
-        </div>
-    </div>
 
-    <div class="description" id="sustainability-desc">
-        <h2>Sustainability Award</h2>
-        <p>Ce trophée est attribué aux véhicules qui font preuve d'une conscience écologique exemplaire, en optimisant l'efficacité énergétique et en réduisant leur empreinte carbone.</p>
-    </div>
-    <div class="description" id="circularity-desc">
-        <h2>Circularity Award</h2>
-        <p>Le Circularity Award récompense les véhicules conçus selon des principes circulaires, avec des matériaux recyclés et une durée de vie prolongée grâce à leur recyclabilité.</p>
-    </div>
-    <div class="description" id="bestcars-desc">
-        <h2>Best Cars Award</h2>
-        <p>Le Best Cars Award est décerné aux voitures les plus performantes en termes de sécurité, confort et design, offrant une expérience de conduite inégalée.</p>
-    </div>
+        <div class="description" id="sustainability-desc">
+            <span class="close-btn" onclick="closeDescription('sustainability')">×</span>
+            <h2>Sustainability Award</h2>
+            <p>Ce trophée est attribué aux véhicules qui font preuve d'une conscience écologique exemplaire, en optimisant l'efficacité énergétique et en réduisant leur empreinte carbone.</p>
+        </div>
+
+        <div class="description" id="circularity-desc">
+            <span class="close-btn" onclick="closeDescription('circularity')">×</span>
+            <h2>Circularity Award</h2>
+            <p>Le Circularity Award récompense les véhicules conçus selon des principes circulaires, avec des matériaux recyclés et une durée de vie prolongée grâce à leur recyclabilité.</p>
+        </div>
+
+        <div class="description" id="bestcars-desc">
+            <span class="close-btn" onclick="closeDescription('bestcars')">×</span>
+            <h2>Best Cars Award</h2>
+            <p>Le Best Cars Award est décerné aux voitures les plus performantes en termes de sécurité, confort et design, offrant une expérience de conduite inégalée.</p>
+        </div>
 
   <script>
     const facts = [
@@ -375,19 +399,28 @@
       document.getElementById('fact-description').textContent = random.description;
     }
     function showDescription(trophy) {
-            // Réinitialiser les trophées
+            // Cacher tous les trophées et descriptions
             document.querySelectorAll('.trophy').forEach(function(trophyElement) {
-                trophyElement.classList.remove('activated');
+                trophyElement.style.display = 'none';
             });
 
-            // Afficher la description correspondante
             document.querySelectorAll('.description').forEach(function(desc) {
-                desc.classList.remove('active');
+                desc.style.display = 'none';
             });
 
-            // Activer le trophée cliqué et afficher sa description
+            // Afficher le trophée sélectionné et la description correspondante
+            document.getElementById(trophy).style.display = 'block';
+            document.getElementById(trophy + '-desc').style.display = 'block';
             document.getElementById(trophy).classList.add('activated');
-            document.getElementById(trophy + '-desc').classList.add('active');
+        }
+
+        function closeDescription(trophy) {
+            // Cacher la description et réafficher les trophées
+            document.getElementById(trophy + '-desc').style.display = 'none';
+            document.querySelectorAll('.trophy').forEach(function(trophyElement) {
+                trophyElement.style.display = 'block';
+            });
+            document.getElementById(trophy).classList.remove('activated');
         }
   </script>
 </body>
