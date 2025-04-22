@@ -199,10 +199,19 @@
         }
 
         .trophy {
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-size: 3rem;  /* Taille du texte */
+    width: 150px;  /* Largeur du trophée */
+    height: 150px; /* Hauteur du trophée */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Fond blanc */
+    border-radius: 10px; /* Coins arrondis */
+    margin: 10px;
+}
 
         .trophy span {
             font-size: 2.5rem;
@@ -247,9 +256,12 @@
         }
 
         .trophy-container {
-            display: flex;
-            gap: 20px;
-        }
+    display: flex;
+    justify-content: space-around; /* Espacement entre les trophées */
+    align-items: center; /* Centrage vertical */
+    width: 100%;  /* Occupation totale de la largeur du parent */
+}
+
 
     </style>
   </style>
